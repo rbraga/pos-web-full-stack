@@ -1,5 +1,6 @@
 const  chalk = require('chalk');
 const yargs = require('yargs');
+const task = require('./task');
 
 // alterando a versão do CLI
 yargs.version('1.0.1');
@@ -27,8 +28,9 @@ yargs.command({
     handler: function(argv) {
         const info = chalk.green.bold.inverse('Creating a new task: ');
         console.log(info);
-        console.log(`Name: ${argv.name}`);
-        console.log(`Description: ${argv.description}`);
+        task.addTasks(argv.name, argv.description);
+        // console.log(`Name: ${argv.name}`);
+        // console.log(`Description: ${argv.description}`);
     }
 })
 
