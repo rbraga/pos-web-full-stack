@@ -60,8 +60,16 @@ yargs.command({
 yargs.command({
     command: 'read',
     describe: 'Read a task from the ToDo list',
-    handler: function() {
+    builder: {
+        name: {
+            describe: 'Task name',
+            type: 'string',
+            demandOption: true
+        }
+    },
+    handler: function(argv) {
         console.log(chalk.yellow('Reading a task'));
+        task.readTask(argv.name)
     }
 })
 
