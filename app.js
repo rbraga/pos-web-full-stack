@@ -1,26 +1,13 @@
-const log = require('./util');
 const _ = require('lodash');
 const  chalk = require('chalk');
 
-console.log('app.js');
-log("primeiro mensagem de log");
-log("segunda mensagem de log");
+const command = process.argv[2].toUpperCase();
+const title = process.argv[3];
 
-const meuArray = [1, 2, 3, 4, 1, 9];
-
-const meuNovoArray = _.chunk(meuArray, 3);
-
-const primeiraMensagem = chalk.bold.green.inverse('Array inicial');
-const segundaMensagem = chalk.bold.red.inverse('meu novo Array');
-
-console.log(primeiraMensagem);
-console.log(chalk.blue(meuArray));
-
-console.log(segundaMensagem);
-console.log(meuNovoArray);
-
-const diferenca = _.difference(meuNovoArray[0], meuNovoArray[1]);
-
-console.log(diferenca);
-
-console.log(_.indexOf(meuArray, 10));
+if (command === 'ADD') {
+    console.log(chalk.green.inverse(`adding new task -> ${title}`));
+} else if (command === 'REMOVE') {
+    console.log(chalk.blue.inverse('removing a task'));
+} else {
+    console.log(chalk.red.inverse('command not found'));
+}
