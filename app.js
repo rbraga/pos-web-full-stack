@@ -7,8 +7,28 @@ yargs.version('1.0.1');
 yargs.command({
     command: 'add',
     describe: 'Add a new task into the ToDo list',
-    handler: function() {
-        console.log(chalk.green('Creating a new task'));
+    builder: {
+        name: {
+            describe: 'Task name',
+            demandOption: true,
+            type: 'string'
+        }, 
+        description: {
+            describe: 'Task description',
+            demandOption: true,
+            type: 'string'
+        }, 
+        type: {
+            describe: 'Task type',
+            type: 'string',
+            default: 'BACKLOG'
+        }
+    },
+    handler: function(argv) {
+        const info = chalk.green.bold.inverse('Creating a new task: ');
+        console.log(info);
+        console.log(`Name: ${argv.name}`);
+        console.log(`Description: ${argv.description}`);
     }
 })
 
@@ -36,4 +56,4 @@ yargs.command({
     }
 })
 
-console.log(yargs.argv);
+yargs.parse()
