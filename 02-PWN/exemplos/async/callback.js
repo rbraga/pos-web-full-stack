@@ -16,13 +16,13 @@ const getPrice = (symbol, callback) => {
 //     console.log(data);
 // })
 
-const somaAsync = (valor1, valor2, callback) => {
+const somaAsync = (a, b, callback) => {
     setTimeout(() => {
-        const resultadoSoma = valor1 + valor2;
-        callback(resultadoSoma);
+        const total = a + b;
+        callback(total);
     }, 3000)
 }
 
-somaAsync(2, 6, (resultadoSoma) => {
-    console.log(resultadoSoma);
+somaAsync(2, 6, (data) => {
+    console.log(data);
 })
