@@ -42,6 +42,21 @@ const removeTask = function(name) {
     }
 }
 
+const listAllTasks = function() {
+    const tasks = loadAllTasks();
+
+    
+    if (tasks.length > 0) {x
+        console.log(chalk.green.bold('List of tasks:'));
+        
+        tasks.forEach(task => {
+            console.log(chalk.yellow(`- ${task.name} [${task.status}]`))
+        });
+    } else {
+        console.log(chalk.red.bold('List of tasks is empty!'))
+    }
+}
+
 const loadAllTasks = function() {
     try {
         const tasksBuffer = fs.readFileSync('tasks.json');
@@ -58,5 +73,6 @@ const saveTask = function(task){
 
 module.exports = {
     addTasks,
-    remove: removeTask
+    listAllTasks,
+    removeTask,
 }

@@ -44,7 +44,7 @@ yargs.command({
     },
     handler: function(argv) {
         console.log(chalk.red('Removing a existing task'));
-        task.remove(argv.name)
+        task.removeTask(argv.name)
     }
 })
 
@@ -53,6 +53,7 @@ yargs.command({
     describe: 'List all tasks',
     handler: function() {
         console.log(chalk.blue('Listing out all tasks'));
+        task.listAllTasks();
     }
 })
 
