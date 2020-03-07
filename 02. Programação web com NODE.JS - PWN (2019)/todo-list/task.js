@@ -1,6 +1,5 @@
 const fs = require('fs');
 const chalk = require('chalk');
-const _ = require('lodash');
 
 const addTasks = function(name, description) {
     const tasks = loadAllTasks();
@@ -26,51 +25,24 @@ const addTasks = function(name, description) {
 
 const removeTask = function(name) {
     const tasks = loadAllTasks();
-    const task = findTask(tasks, task);
+    const tasksToKeep = tasks.filter(function(task) {
+        return task.name !== name;
+    });
 
-    if (task) {   
-        _.remove(tasks, function(task) {
-            return task.name === name;
-        });
-        saveTask(tasks);
-        console.log(chalk.green.bold(`Task [${name}] removed!`));
-    }
+    saveTask(tasksToKeep);
+    console.log(chalk.green.bold(`Task [${name}] has been removed!`));   
 }
 
-const listAllTasks = function() {
+const findTask = function(name) {
     const tasks = loadAllTasks();
-    
-    if (tasks.length > 0) {
-        console.log(chalk.green.bold('List of tasks:'));
-
-        tasks.forEach(task => {
-            console.log(chalk.yellow(`- ${task.name} [${task.status}]`))
-        });
-    } else {
-        console.log(chalk.red.bold('List of tasks is empty!'))
-    }
-}
-
-const findTask = function(tasks, name) {
-    const task = tasks.find(function(task){
+    const taskFound = tasks.find(function(task){
         return task.name === name;
-    })
+    });
 
-    if (!task) {
-        console.log(chalk.red.bold(`Task with name [${name}] not exists!`));
-    } 
-
-    return task;
-}
-
-const readTask = function(name) {
-    const tasks = loadAllTasks();
-    const task = findTask(tasks, name);
-
-    if (task) {
-        console.log(chalk.green.bold(`Name: ${task.name}`));
-        console.log(chalk.green.bold(`Status: ${task.status}`));
-        console.log(chalk.green(task.description));
+    if (taskFound !== undefined){
+        return taskFound;
+    } else {
+        return {};
     }
 }
 
@@ -88,9 +60,24 @@ const saveTask = function(task){
     fs.writeFileSync('tasks.json', taskJSON);
 }
 
+const updateTask = function(name, status) {
+    const tasks = loadAllTasks();
+
+    tasks.find(function(task) {
+        if (task.name === name){
+            task.status = status;
+        }
+    })
+
+    saveTask(tasks);
+
+    console.log(chalk.green.bold(`Task status with name ${name} has been updated!`));
+}
+
 module.exports = {
     addTasks,
-    listAllTasks,
+    loadAllTasks,
     removeTask,
-    readTask
+    findTask,
+    updateTask
 }

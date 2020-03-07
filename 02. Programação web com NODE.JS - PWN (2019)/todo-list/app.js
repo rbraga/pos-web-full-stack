@@ -37,13 +37,13 @@ yargs.command({
     describe: 'Remove a task from the ToDo list',
     builder: {
         name: {
-            describe: 'Task name',
+            describe: 'Task name to be removed',
             type: 'string',
             demandOption: true
         }
     },
     handler: function(argv) {
-        console.log(chalk.red('Removing a existing task'));
+        console.log(chalk.red.bold.inverse('Removing a existing task'));
         task.removeTask(argv.name)
     }
 })
@@ -52,8 +52,10 @@ yargs.command({
     command: 'list',
     describe: 'List all tasks',
     handler: function() {
-        console.log(chalk.blue('Listing out all tasks'));
-        task.listAllTasks();
+        console.log(chalk.blue.bold.inverse('Listing out all tasks'));
+        const tasks = task.loadAllTasks();
+        const allTasksJSON = JSON.stringify(tasks, null, 2);
+        console.log(allTasksJSON);
     }
 })
 
@@ -62,14 +64,36 @@ yargs.command({
     describe: 'Read a task from the ToDo list',
     builder: {
         name: {
-            describe: 'Task name',
+            describe: 'Task to find',
             type: 'string',
             demandOption: true
         }
     },
     handler: function(argv) {
-        console.log(chalk.yellow('Reading a task'));
-        task.readTask(argv.name)
+        console.log(chalk.yellow.bold.inverse('Reading a task'));
+        const taskFound  = task.findTask(argv.name);
+        console.log(JSON.stringify(taskFound, null, 2));
+    }
+})
+
+yargs.command({
+    command: 'update',
+    describe: 'Update a task',
+    builder: {
+        name: {
+            describe: 'Task to find',
+            type: 'string',
+            demandOption: true
+        }, 
+        status: {
+            describe: 'Status to update the task',
+            type: 'string',
+            demandOption: true
+        }
+    },
+    handler: function(argv) {
+        console.log(chalk.white.bold.inverse('Updating a task'));
+        task.updateTask(argv.name, argv.status);
     }
 })
 
