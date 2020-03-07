@@ -1,23 +1,25 @@
-const fs = require('fs');
+const fs = require('fs')
 
-const carro = {
-    name: 'HR-V',
-    brand: 'Honda',
-    color: 'White',
-    year: 2020
+// objeto criado
+const pessoa = {
+    nome: 'Rafael',
+    sobrenome: 'Braga',
+    idade: 34
 }
 
-const carroJSON = JSON.stringify(carro);
+// converter o objeto JS em JSON
+const pessoaJSON = JSON.stringify(pessoa);
 
-fs.writeFileSync('carro.json', carroJSON);
+// gravar em um arquivo o conteúdo
+fs.writeFileSync('pessoa.json', pessoaJSON);
 
-const carroContent = fs.readFileSync('carro.json');
+// recuperar o conteúdo do arquivo JSON
+const pessoaContent = fs.readFileSync('pessoa.json');
 
-const carroDeVoltaComoObjeto = JSON.parse(carroContent.toString());
+console.log(pessoaContent.toString());
 
-carroDeVoltaComoObjeto.name = 'Civic';
-carroDeVoltaComoObjeto.year = 2018;
+const pessoaDeVoltaComoObjeto = JSON.parse(pessoaContent.toString());
 
-carroJSONAlterado = JSON.stringify(carroDeVoltaComoObjeto);
-
-fs.writeFileSync('carro.json', carroJSONAlterado);
+pessoaDeVoltaComoObjeto.nome = 'John';
+console.log(pessoaDeVoltaComoObjeto);
+console.log(pessoaDeVoltaComoObjeto.nome);
