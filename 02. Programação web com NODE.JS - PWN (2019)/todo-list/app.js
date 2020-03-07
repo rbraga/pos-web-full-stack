@@ -25,7 +25,7 @@ yargs.command({
             default: 'BACKLOG'
         }
     },
-    handler: function(argv) {
+    handler: (argv) => {
         const info = chalk.green.bold.inverse('Creating a new task: ');
         console.log(info);
         task.addTasks(argv.name, argv.description);
@@ -42,7 +42,7 @@ yargs.command({
             demandOption: true
         }
     },
-    handler: function(argv) {
+    handler: (argv) => {
         console.log(chalk.red.bold.inverse('Removing a existing task'));
         task.removeTask(argv.name)
     }
@@ -51,7 +51,7 @@ yargs.command({
 yargs.command({
     command: 'list',
     describe: 'List all tasks',
-    handler: function() {
+    handler: () => {
         console.log(chalk.blue.bold.inverse('Listing out all tasks'));
         const tasks = task.loadAllTasks();
         const allTasksJSON = JSON.stringify(tasks, null, 2);
@@ -69,7 +69,7 @@ yargs.command({
             demandOption: true
         }
     },
-    handler: function(argv) {
+    handler: (argv) => {
         console.log(chalk.yellow.bold.inverse('Reading a task'));
         const taskFound  = task.findTask(argv.name);
         console.log(JSON.stringify(taskFound, null, 2));
@@ -91,7 +91,7 @@ yargs.command({
             demandOption: true
         }
     },
-    handler: function(argv) {
+    handler: (argv) => {
         console.log(chalk.white.bold.inverse('Updating a task'));
         task.updateTask(argv.name, argv.status);
     }

@@ -2,11 +2,9 @@ const fs = require('fs');
 const chalk = require('chalk');
 
 const addTasks = function(name, description) {
-    const tasks = loadAllTasks();
 
-    const duplicatedTask = tasks.find(function(task){
-        return task.name === name;
-    })
+    const tasks = loadAllTasks();
+    const duplicatedTask = tasks.find((task) => task.name == name);
 
     if (!duplicatedTask){   
             const newTask = {
@@ -25,9 +23,7 @@ const addTasks = function(name, description) {
 
 const removeTask = function(name) {
     const tasks = loadAllTasks();
-    const tasksToKeep = tasks.filter(function(task) {
-        return task.name !== name;
-    });
+    const tasksToKeep = tasks.filter((task) => task.name !== name)
 
     saveTask(tasksToKeep);
     console.log(chalk.green.bold(`Task [${name}] has been removed!`));   
@@ -35,9 +31,7 @@ const removeTask = function(name) {
 
 const findTask = function(name) {
     const tasks = loadAllTasks();
-    const taskFound = tasks.find(function(task){
-        return task.name === name;
-    });
+    const taskFound = tasks.find((task) => task.name === name)
 
     if (taskFound !== undefined){
         return taskFound;
@@ -63,7 +57,7 @@ const saveTask = function(task){
 const updateTask = function(name, status) {
     const tasks = loadAllTasks();
 
-    tasks.find(function(task) {
+    tasks.find((task) => {
         if (task.name === name){
             task.status = status;
         }
