@@ -1,5 +1,6 @@
 const fs = require('fs');
 const chalk = require('chalk');
+const _ = require('lodash');
 
 const addTasks = function(name, description) {
     const tasks = loadAllTasks();
@@ -23,6 +24,24 @@ const addTasks = function(name, description) {
     }
 }
 
+const removeTask = function(name) {
+    const tasks = loadAllTasks();
+
+    const task = tasks.find(function(task){
+        return task.name === name;
+    })
+
+    if (task){   
+        _.remove(tasks, function(task) {
+            return task.name === name;
+        });
+        saveTask(tasks);
+        console.log(chalk.green.bold(`Task [${name}] removed!`));
+    } else {
+        console.log(chalk.red.bold(`Task with name [${name}] not exists!`));
+    }
+}
+
 const loadAllTasks = function() {
     try {
         const tasksBuffer = fs.readFileSync('tasks.json');
@@ -38,5 +57,6 @@ const saveTask = function(task){
 }
 
 module.exports = {
-    addTasks
+    addTasks,
+    remove: removeTask
 }

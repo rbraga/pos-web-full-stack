@@ -29,16 +29,22 @@ yargs.command({
         const info = chalk.green.bold.inverse('Creating a new task: ');
         console.log(info);
         task.addTasks(argv.name, argv.description);
-        // console.log(`Name: ${argv.name}`);
-        // console.log(`Description: ${argv.description}`);
     }
 })
 
 yargs.command({
     command: 'remove',
     describe: 'Remove a task from the ToDo list',
-    handler: function() {
+    builder: {
+        name: {
+            describe: 'Task name',
+            type: 'string',
+            demandOption: true
+        }
+    },
+    handler: function(argv) {
         console.log(chalk.red('Removing a existing task'));
+        task.remove(argv.name)
     }
 })
 
