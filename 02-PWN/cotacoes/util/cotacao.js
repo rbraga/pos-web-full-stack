@@ -18,7 +18,11 @@ const cotacao = (symbol, callback) => {
         const data = {
             symbol: parsedJSON.data[0].symbol,
             description: parsedJSON.data[0].name,
-            price: parsedJSON.data[0].price
+            price: parsedJSON.data[0].price,
+            price_open: parsedJSON.data[0].price_open,
+            close_yesterday: parsedJSON.data[0].close_yesterday,
+            day_high: parsedJSON.data[0].day_high,
+            day_low: parsedJSON.data[0].day_low
         };
 
         callback(data);
