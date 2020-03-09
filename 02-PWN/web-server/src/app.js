@@ -37,21 +37,20 @@ app.get('/help', (req, res) => {
 
 app.get('/cotacoes', (req, res) => {
     if(!req.query.ativo) {
-        const error = {
-            message: 'O ativo deve ser informado'
-        }
-        return res.status(400).json(error);
+        return res.status(400).json({
+            message: 'O ativo deve ser informado como query parameter'
+        });
     }
+
 
     const symbol = req.query.ativo.toUpperCase();
 
-    cotacoes(symbol, (data,err) => {
+    cotacoes(symbol, (err, body) => {
         if (err) {
-            console.log(err);
-            res.status(500).json(err);
+            const {message} = err;
+            res.status(err.code).json({message});
         }
-        console.log(data);
-        res.status(200).json(data);
+        res.status(200).json(body);
     });
 });
 

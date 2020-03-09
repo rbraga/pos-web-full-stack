@@ -6,24 +6,24 @@ const cotacao = (symbol, callback) => {
 
     request({url: url, json: true},(err, response) => {
         if (err) {
-            const error = { 
-                message: `Something went wrong: ${err}`
-            };
-            return callback(null, error);
+            return callback({ 
+                message: `Something went wrong: ${err}`,
+                code: 500
+            }, undefined);
         }
         
-        if (response.body.data === undefined) {
-            const error = { 
-                message: `No data found`
-            };
-            return callback(null, error);
+        if (response.body === undefined || response.body.data === undefined) {
+            return callback({ 
+                message: `No data found`,
+                code: 404
+            }, undefined);
         }
+
         const parsedJSON = response.body.data[0];
 
         const {symbol, price_open, price, day_high, day_low } = parsedJSON;
-        const data = {symbol, price_open, price, day_high, day_low }
         
-        return callback(data, null);
+        callback(undefined, {symbol, price_open, price, day_high, day_low });
     })
 }
 
