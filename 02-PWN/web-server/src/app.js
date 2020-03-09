@@ -50,6 +50,22 @@ app.get('/cotacoes', (req, res) => {
     res.send(cotacoes);
 });
 
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        errorMessage: 'Não existe página depois de /help.',
+        author: 'Rafael Braga'
+    });
+})
+
+app.get('*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        errorMessage: 'Página não encontrada.',
+        author: 'Rafael Braga'
+    });
+})
+
 app.listen(3000, () => {
     console.log('server is up on port 3000');
 });
