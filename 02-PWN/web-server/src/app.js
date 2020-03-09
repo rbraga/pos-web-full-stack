@@ -40,14 +40,18 @@ app.get('/cotacoes', (req, res) => {
         const error = {
             message: 'O ativo deve ser informado'
         }
-        return res.send(error);
+        return res.status(400).json(error);
     }
 
     const symbol = req.query.ativo.toUpperCase();
 
-    cotacoes(symbol, (data) => {
+    cotacoes(symbol, (data,err) => {
+        if (err) {
+            console.log(err);
+            res.status(500).json(err);
+        }
         console.log(data);
-        res.send(data);
+        res.status(200).json(data);
     });
 });
 
