@@ -1,21 +1,25 @@
+const path = require('path')
 const express = require('express');
 
 const app = express();
+const publicDirectoryPath = path.join(__dirname, '../public');
 
-app.get('', (req, res) => {
-    res.send('Hello minha app')
-});
-
-app.get('/help', (req, res) => {
-    res.send('help page');
-});
-
-app.get('/about', (req, res) => {
-    res.send('about page');
-});
+app.use(express.static(publicDirectoryPath));
 
 app.get('/cotacoes', (req, res) => {
-    res.send('Cotações page');
+    const cotacao = { 
+        symbol: 'PETR4.SA',
+        price_open: 10,
+        price: 12,
+        day_high: 13,
+        day_low: 9
+    };
+
+    const cotacoes = new Array();
+    cotacoes.push(cotacao);
+    cotacoes.push(cotacao);
+
+    res.send(cotacoes);
 });
 
 app.listen(3000, () => {
