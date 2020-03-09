@@ -1,6 +1,6 @@
-const cotacao = require('./util/cotacao');
 const yargs = require('yargs');
 const chalk = require('chalk');
+const cotacao = require('./util/cotacao');
 
 yargs.version('1.0.0');
 
@@ -9,22 +9,28 @@ yargs.version('1.0.0');
 // })
 
 yargs.command({
-    command: 'cotacao',
-    describe: 'Obter cotação do dia da bolsa de valores',
+    command: 'consulta',
+    describe: 'Consulta um ativo na bolsa de valores',
     builder: {
-        codigo: {
-            describe: 'Código do Ativo a ser consultado',
+        ativo: {
+            describe: 'Ativo na bolsa de valores',
             demandOption: true,
             type: 'string'
         }
     },
     handler: (argv) => {
-        cotacao(argv.codigo, ({price_open, close_yesterday, day_high, day_low}) => {
-            console.log(chalk.yellow.bold.inverse(`Cotação do dia [${argv.codigo}]:`));
-            console.log(chalk.green.bold(`Abertura: R$ ${price_open}`));
-            console.log(chalk.green.bold(`Fechamento: R$ ${close_yesterday}`));
-            console.log(chalk.blue.bold(`Alta: R$ ${day_high}`));
-            console.log(chalk.red.bold(`Baixa: R$ ${day_low}`));
+        cotacao(argv.ativo.toUpperCase(), ({price, price_open, day_high, day_low, symbol}) => {
+            console.log(chalk.green.bold.inverse(`${symbol}`));
+            console.log(chalk.blue.bold(`Abertura: R$ ${price_open}`));
+            console.log(chalk.red.bold(`Menor valor do dia: R$ ${day_low}`));
+            console.log(chalk.green.bold(`Maior valor do dia: R$ ${day_high}`));
+            if(price_open > price) {
+                console.log(chalk.red.bold(`Fechamento: ▼ R$ ${price}`));
+            } else if (price_open === price) {
+                console.log(chalk.yellow.bold(`Fechamento: R$ ${price}`));
+            } else {
+                console.log(chalk.green.bold(`Fechamento: ▲ R$ ${price}`));
+            }
         })
     }
 })
