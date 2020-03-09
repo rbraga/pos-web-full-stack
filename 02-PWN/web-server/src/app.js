@@ -1,6 +1,7 @@
 const path = require('path')
 const express = require('express');
 const hbs = require('hbs')
+const cotacoes = require('./util/cotacao')
 
 const app = express();
 const publicDirectoryPath = path.join(__dirname, '../public');
@@ -35,19 +36,19 @@ app.get('/help', (req, res) => {
 })
 
 app.get('/cotacoes', (req, res) => {
-    const cotacao = { 
-        symbol: 'PETR4.SA',
-        price_open: 10,
-        price: 12,
-        day_high: 13,
-        day_low: 9
-    };
+    if(!req.query.ativo) {
+        const error = {
+            message: 'O ativo deve ser informado'
+        }
+        return res.send(error);
+    }
 
-    const cotacoes = new Array();
-    cotacoes.push(cotacao);
-    cotacoes.push(cotacao);
+    const symbol = req.query.ativo.toUpperCase();
 
-    res.send(cotacoes);
+    cotacoes(symbol, (data) => {
+        console.log(data);
+        res.send(data);
+    });
 });
 
 app.get('/help/*', (req, res) => {
