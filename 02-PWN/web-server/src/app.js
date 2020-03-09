@@ -15,7 +15,7 @@ app.use(express.static(publicDirectoryPath));
 
 app.get('', (req, res) => {
     res.render('index', {
-        title: 'Bem vindo ao sistema de cotações',
+        title: 'Cotações',
         author: 'Rafael Braga'
     });
 })
