@@ -38,17 +38,21 @@ app.get('/help', (req, res) => {
 app.get('/cotacoes', (req, res) => {
     if(!req.query.ativo) {
         return res.status(400).json({
-            message: 'O ativo deve ser informado como query parameter'
+            error: {
+                message: 'O ativo deve ser informado como query parameter',
+                code: 400
+            }
         });
     }
-
 
     const symbol = req.query.ativo.toUpperCase();
 
     cotacoes(symbol, (err, body) => {
         if (err) {
-            const {message} = err;
-            res.status(err.code).json({message});
+            res.status(err.code).json({ error: {
+                message: err.message,
+                code: err.code
+            }});
         }
         res.status(200).json(body);
     });
