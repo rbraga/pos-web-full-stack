@@ -1,7 +1,6 @@
 const express = require('express');
 const User = require('../models/users');
 
-
 const router = new express.Router();
 
 router.post('/users', async (req, res) => {
@@ -13,7 +12,6 @@ router.post('/users', async (req, res) => {
     } catch(error) {
         res.status(400).send(error);
     }
-    res.status(201).send(req.body);
 });
 
 router.get('/users', async (req, res) => {

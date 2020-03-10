@@ -2,9 +2,11 @@
   "name": "todo-api",
   "version": "1.0.0",
   "description": "Todo API",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node src/index.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
+    "test": "env-cmd -f ./config/test.env jest --watchAll"
   },
   "author": "Rafael Braga",
   "license": "ISC",
@@ -15,6 +17,9 @@
     "validator": "^12.2.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "env-cmd": "^10.1.0",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
   }
 }
