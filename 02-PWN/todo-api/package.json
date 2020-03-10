@@ -4,12 +4,15 @@
   "description": "Todo API",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app.js"
   },
   "author": "Rafael Braga",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^3.5.4",
+    "mongoose": "^5.9.4",
+    "validator": "^12.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
