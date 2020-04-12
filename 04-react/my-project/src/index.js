@@ -4,7 +4,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+const rootElement = document.getElementById('root');
+const element = document.createElement('div');
+element.innerHTML = 'Hello World!';
+element.className = 'container';
 
+rootElement.appendChild(element);
 
 // ReactDOM.render(
 //   <React.StrictMode>
