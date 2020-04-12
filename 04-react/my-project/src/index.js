@@ -5,11 +5,19 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const rootElement = document.getElementById('root');
-const element = document.createElement('div');
-element.innerHTML = 'Hello World!';
-element.className = 'container';
+// const element = document.createElement('div');
+// element.innerHTML = 'Hello World!';
+// element.className = 'container';
+// rootElement.appendChild(element);
 
-rootElement.appendChild(element);
+const hellowWorld = 'Hello World'
+const props = {
+    className: 'main-title',
+};
+
+const MyComponent = () => <h1 {...props}>{hellowWorld}</h1>
+ReactDOM.render(<MyComponent />, rootElement)
+
 
 // ReactDOM.render(
 //   <React.StrictMode>
