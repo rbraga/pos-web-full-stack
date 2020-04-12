@@ -11,11 +11,16 @@ const rootElement = document.getElementById('root');
 // rootElement.appendChild(element);
 
 const hellowWorld = 'Hello World'
+const componentBackground = 'blue'
 const props = {
     className: 'main-title',
+    style: {
+        background: componentBackground,
+        marginLeft: '50px'
+    }
 };
 
-const MyComponent = () => <h1 {...props}>{hellowWorld}</h1>
+const MyComponent = () => <h1 {...props} className="my-title">{hellowWorld}</h1>
 ReactDOM.render(<MyComponent />, rootElement)
 
 
