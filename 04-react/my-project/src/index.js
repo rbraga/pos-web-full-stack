@@ -4,32 +4,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const rootElement = document.getElementById('root');
-// const element = document.createElement('div');
-// element.innerHTML = 'Hello World!';
-// element.className = 'container';
-// rootElement.appendChild(element);
-
-const hellowWorld = 'Hello World'
-const componentBackground = 'blue'
-const props = {
-    className: 'main-title',
-    style: {
-        background: componentBackground,
-        marginLeft: '50px'
-    }
-};
-
-const MyComponent = () => <h1 {...props} className="my-title">{hellowWorld}</h1>
-ReactDOM.render(<MyComponent />, rootElement)
-
-
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
