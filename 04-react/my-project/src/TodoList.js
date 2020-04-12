@@ -6,7 +6,7 @@ export function TodoList() {
         {
             id: 1,
             name: 'Task 1',
-            status: true
+            status: 'pending'
         },
         {
             id: 2,
@@ -19,11 +19,14 @@ export function TodoList() {
             status: 'pending'
         }
     ]
+
+    const handleShowTaskName = (taskName) => alert(`Você clicou em ${taskName}`)
+
     return (
         <ul>
             {taskItems.map(task =>  (
                 <li>
-                    <TodoListItem {...task} />
+                    <TodoListItem onShowTaskName={handleShowTaskName} {...task} />
                 </li>
             ))}
         </ul>

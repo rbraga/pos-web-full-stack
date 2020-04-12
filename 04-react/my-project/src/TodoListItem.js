@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export function TodoListItem(props) {
     return (
         <div>
-            <b>{props.name}</b>
+            <b>{props.name}</b> <button onClick={() => props.onShowTaskName(props.name)}>Alert task name</button>
         </div>
     )
 }
