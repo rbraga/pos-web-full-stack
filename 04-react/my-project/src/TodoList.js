@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 
 export class TodoList extends Component {
     state = {
+        listTitle: '',
         taskItems: [
             {
                 id: 1,
@@ -23,8 +24,14 @@ export class TodoList extends Component {
         ]
     } 
 
+    componentDidMount() {
+        console.log('Chamou component didMount');
+        this.setState({ listTitle: 'My list title' });
+    }
     
     render() {
+        console.log('Chamou render()')
+
         const handleOnToggleCompleted = (taksId, event) => {
             this.setState({
                 taskItems: this.state.taskItems.map(task => {
@@ -39,13 +46,16 @@ export class TodoList extends Component {
         }
 
         return (
-        <ul>
-            {this.state.taskItems.map(task =>  (
-                <li>
-                    <TodoListItem onToggleCompleted={handleOnToggleCompleted} {...task} />
-                </li>
-            ))}
-        </ul>
+            <div>
+                <h1>{this.state.listTitle}</h1>
+                <ul>
+                    {this.state.taskItems.map(task =>  (
+                        <li>
+                            <TodoListItem onToggleCompleted={handleOnToggleCompleted} {...task} />
+                        </li>
+                    ))}
+                </ul>
+            </div>
         )
     }
 
