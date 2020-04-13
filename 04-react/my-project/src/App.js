@@ -1,19 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import { Clock } from './Clock';
+import { useWindowWidth } from './useWindowWidth';
 
 function App() {
-  const [ isClockHidden, setIsClockHidden ] = useState(false)
-  
-  if (isClockHidden) {
-    return <h1>Clock is hidden</h1>
-  }
-
+  const width = useWindowWidth()
   return (
-    <div>
-      <button onClick={() => setIsClockHidden(true)}>Hide Clock</button>
-      <Clock />
-    </div>
+    <h1>Window width is  {width}</h1>
   );
   
 }
