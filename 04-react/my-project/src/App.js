@@ -1,29 +1,25 @@
 import React, { Component } from 'react';
 import './App.css';
-import './TodoList';
-import { Users } from './Users';
+import { Clock } from './Clock';
 
 class App extends Component {
   state = {
-    searchForUser: ''
+    isClockHidden: false
   } 
 
+  hideClock = () => {
+    this.setState({ isClockHidden: true })
+  }
+
   render() {
-    const handleFormSubmit = (event) => {     
-      event.preventDefault()
-      const inputValue = document.getElementById('search-input').value 
-      this.setState({
-        searchForUser: inputValue
-      })
+    if (this.state.isClockHidden) {
+      return <h1>Clock is hidden</h1>
     }
 
     return (
       <div>
-        <form onSubmit={handleFormSubmit}>
-          <input id="search-input" placeholder="Search for a user" />
-          <button >Search</button>
-        </form>
-        <Users searchFor={this.state.searchForUser} />
+        <button onClick={this.hideClock}>Hide Clock</button>
+        <Clock />
       </div>
     );
   }
