@@ -1,0 +1,39 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "name": "Ipad Mini",
+            "image": "ipad.jpg",
+            "price": 2999.00,
+            "description": "Aprenda, Jogue, Navegue e Crie.O iPad Tem Uma Tela Incrível, Desempenho Espetacular."
+        },
+        {
+            "id": 2,
+            "name": "Kindle",
+            "image": "kindle.jpg",
+            "price": 499.00,
+            "description": "Novo Kindle por R$ 299, mais leve e mais rápido. Tela sensível ao toque que parece papel, sem reflexo mesmo sob a luz do sol."
+        },
+        {
+            "id": 3,
+            "name": "Macbook Air",
+            "image": "macbook-air.png",
+            "price": 8999.00,
+            "description": "Conheça o MacBook Air com tela Retina, novo Magic Keyboard, Touch ID, desempenho até duas vezes mais rápido e bateria para o dia todo."
+        },
+        {
+            "id": 4,
+            "name": "Macbook Pro",
+            "image": "macbook-pro.jpg",
+            "price": 10999.00,
+            "description": "Conheça a linha do MacBook Pro, os notebooks mais potentes da Apple, com processadores rápidos, chips gráficos incríveis, Touch Bar e tela Retina."
+        },
+        {
+            "id": 5,
+            "name": "Samsung S20",
+            "image": "s20.jpg",
+            "price": 5999.00,
+            "description": "Com a segurança do Samsung Knox, uma bateria inteligente, um processador poderoso e um espaço de armazenamento enorme, os 3 modelos do Galaxy S20."
+        }
+    ]
+}
