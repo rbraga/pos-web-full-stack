@@ -3,15 +3,21 @@ import logo from './logo.svg';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 import { ProductsList } from './views/Products';
+import { ProductComponent } from './views/Product';
+import { Provider } from 'react-redux';
+import { Store } from './store';
 
 function App() {
   return (
-    <div id="main-app">\
-      <h1>Amazing Store</h1>
-      <BrowserRouter>
-        <Route exact path="/" component={ProductsList}></Route>
-      </BrowserRouter>
-    </div>
+    <Provider store={Store} >
+      <div id="main-app">
+        <h1>Amazing Store</h1>
+        <BrowserRouter>
+          <Route exact path="/" component={ProductsList} />
+          <Route path="/product/:id" component={ProductComponent} />
+        </BrowserRouter>
+      </div>
+    </Provider>
   );
 }
 
