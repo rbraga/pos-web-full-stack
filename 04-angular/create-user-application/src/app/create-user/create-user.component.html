@@ -1,0 +1,20 @@
+<form (ngSubmit)="onSubmitForm(form)" #form="ngForm">
+    <p>
+        <label for="name">Nome Completo:</label>
+        <input type="text" name="name" id="name" ngModel />
+    </p>
+
+    <p>
+        <label for="email">E-mail:</label>
+        <input type="text" name="email" id="email" ngModel />
+    </p>
+
+    <p>
+        <label for="address">Endereço:</label>
+        <input type="text" name="address" id="address" ngModel />
+    </p>
+
+    <p>
+        <button>Cadastrar</button>
+    </p>
+</form>
