@@ -3,7 +3,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-my-component',
   template: `
-    <p>Custom property {{ customProperty }} </p>
+    <p>Custom property: {{ customProperty }} </p>
+    <input type="text" [(ngModel)]="customProperty" />
     <button (click)="handleCustomEvent()">Send output</button>
     <ul>
       <li *ngFor="let item of items">
@@ -22,11 +23,12 @@ export class MyComponentComponent {
   @Output() myCustomOutput = new EventEmitter<string>();
 
   items = ['item 1', 'item 2', 'item 3', 'item 4']
+  inputValue: string;
 
   constructor() { }
 
   handleCustomEvent() {
-    this.myCustomOutput.emit('Sending custom output');
+    this.myCustomOutput.emit(this.inputValue);
   }
 
 }
