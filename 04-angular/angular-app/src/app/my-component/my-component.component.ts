@@ -7,7 +7,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     <button (click)="handleCustomEvent()">Send output</button>
     <ul>
       <li *ngFor="let item of items">
-        <span *ngIf="item !== 'item 3'">{{item}}</span>
+        <span 
+          *ngIf="item !== 'item 3'"
+          [style.background]="item === 'item 2' ? 'blue' : 'green'"
+          [ngClass]="item === 'item 2' ? 'color-white' : ''"
+        >{{item}}</span>
       </li>
     </ul>
 `,
