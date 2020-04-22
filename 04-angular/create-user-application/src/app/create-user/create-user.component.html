@@ -1,7 +1,8 @@
 <form (ngSubmit)="onSubmitForm(form)" #form="ngForm">
     <p>
         <label for="name">Nome Completo:</label>
-        <input type="text" name="name" id="name" ngModel />
+        <input type="text" name="name" id="name" #nameCtrl="ngModel" ngModel required />
+        <span *ngIf="nameCtrl.status === 'INVALID' && nameCtrl.touched">Campo obrigatório</span>
     </p>
 
     <p>
@@ -15,6 +16,6 @@
     </p>
 
     <p>
-        <button>Cadastrar</button>
+        <button [disabled]="form.status === 'INVALID'">Cadastrar</button>
     </p>
 </form>
