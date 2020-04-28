@@ -7,12 +7,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./movie-detail.component.css']
 })
 export class MovieDetailComponent implements OnInit {
-  movieTitle: string;
+  
 
   constructor(
     private route: ActivatedRoute
   ) {
-    this.movieTitle = this.route.snapshot.params.title;
   }
 
   ngOnInit(): void {
