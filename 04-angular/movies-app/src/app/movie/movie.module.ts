@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MovieItemComponent } from 'movie-item/movie-item.component';
+import { MovieItemComponent } from './movie-item/movie-item.component';
 
 
 
