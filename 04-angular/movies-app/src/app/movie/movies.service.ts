@@ -22,6 +22,9 @@ private API_KEY = '8074f70153c0fe68ee572b6926d04d69';
       .pipe(
         map((response: any) => response.results)
       )
-
   }
+
+  getMovie(id: string) {
+    return this.http.get(this.withBaseUrl(`movie/${id}`));
+  } 
 }

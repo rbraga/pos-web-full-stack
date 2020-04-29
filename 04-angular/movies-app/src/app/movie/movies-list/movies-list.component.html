@@ -3,7 +3,7 @@
 
 
 <ul *ngFor="let movie of movies" >
-    <li><a routerLink="{ {movie.id}}">{{ movie.title }}</a></li> 
-</ul>>
+    <li><a routerLink="{{movie.id}}">{{ movie.title }}</a></li> 
+</ul>
 
 <router-outlet></router-outlet>
