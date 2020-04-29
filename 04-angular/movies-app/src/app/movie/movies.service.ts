@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ private API_KEY = '8074f70153c0fe68ee572b6926d04d69';
   }
 
   getPopularMovies() {
-    return this.http.get(this.withBaseUrl('movie/popular'));
+    return this.http.get(this.withBaseUrl('movie/popular'))
+      .pipe(
+        map((response: any) => response.results)
+      )
+
   }
 }

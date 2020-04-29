@@ -7,6 +7,7 @@ import { MoviesService } from '../movies.service';
   styleUrls: ['./movies-list.component.css']
 })
 export class MoviesListComponent implements OnInit {
+  movies: [];
 
   constructor(
     private moviesService: MoviesService
@@ -14,8 +15,8 @@ export class MoviesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.moviesService.getPopularMovies()
-      .subscribe(response => {
-        console.log(response);
+      .subscribe((response: any) => {
+        this.movies = response;
       })
   }
 

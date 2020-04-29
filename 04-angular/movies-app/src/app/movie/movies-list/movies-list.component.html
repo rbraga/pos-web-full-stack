@@ -1,10 +1,9 @@
 <h1>Movies List</h1>
 
-<ul>
-    <li><a routerLink="10">Avengers: Endgame</a></li> 
-</ul>
-<ul>
-    <li><a routerLink="15">Batman: Begins</a></li> 
-</ul>
+
+
+<ul *ngFor="let movie of movies" >
+    <li><a routerLink="{ {movie.id}}">{{ movie.title }}</a></li> 
+</ul>>
 
 <router-outlet></router-outlet>
