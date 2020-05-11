@@ -23,3 +23,7 @@ Route::resource('categoria', 'CategoriaController');
 Route::resource('despesa', 'DespesaController');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
