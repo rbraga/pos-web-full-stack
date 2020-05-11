@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Despesa;
+use App\Categoria;
 use Illuminate\Http\Request;
 
 class DespesaController extends Controller
@@ -25,7 +26,8 @@ class DespesaController extends Controller
      */
     public function create()
     {
-        return view('despesa.create', compact('despesas'));
+        $categorias = Categoria::all();
+        return view('despesa.create', compact('categorias'));
     }
 
     /**
@@ -67,7 +69,8 @@ class DespesaController extends Controller
     public function edit($id)
     {
         $despesa = Despesa::findOrFail($id);
-        return view('despesa.edit', compact('despesa'));
+        $categorias = Categoria::all();
+        return view('despesa.edit', compact('despesa', 'categorias'));
     }
 
     /**
