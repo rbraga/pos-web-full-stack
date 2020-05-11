@@ -19,6 +19,14 @@ class DespesaController extends Controller
         return view('despesa.index', compact('despesas'));
     }
 
+    public function categoria($id)
+    {
+        $despesas = Despesa::where('categoria_id', $id)->get();
+        $categorias = Categoria::all();
+
+        return view('despesa.categoria', compact('despesas', 'categorias'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
